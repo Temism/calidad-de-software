@@ -57,7 +57,7 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 					if (mysqli_num_rows($username_check_query) > 0) {
 						$errors[] = "El nombre de usuario ya está en uso por otro usuario.";
 					} else {	
-						// Si no hay errores, proceder con la actualización
+						
 						$sql = "UPDATE users SET firstname='$firstname', lastname='$lastname', user_name='$user_name', user_email='$user_email' WHERE user_id='$user_id';";
 						$query_update = mysqli_query($con, $sql);
 				

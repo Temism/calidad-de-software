@@ -77,19 +77,19 @@
 		
 		if(form) {
 			form.addEventListener('submit', function(e) {
-				// Siempre prevenir el envío por defecto
+				
 				e.preventDefault();
 				
-				// Realizar validación personalizada
+				
 				const nombre = document.getElementById('nombre').value.trim();
 				const codigo = document.getElementById('codigo').value.trim();
 				
-				// Obtener la inicial del nombre en mayúscula
+				
 				const inicial = nombre[0].toUpperCase();
 				
-				// Verificar que el código comience con la inicial y siga con números
+				
 				if(!codigo.startsWith(inicial) || !/^[A-Z][0-9]+$/.test(codigo)) {
-					// Mostrar error en el div de resultados
+					
 					document.getElementById('resultados_ajax_productos').innerHTML = `
 						<div class="alert alert-danger" role="alert">
 							<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -98,24 +98,24 @@
 					return false;
 				}
 				
-				// Si pasa la validación, recoger los datos del formulario
+				
 				let datos = new FormData(form);
 				
-				// Realizar la petición AJAX
+				
 				fetch('ajax/nuevo_producto.php', {
 					method: 'POST',
 					body: datos
 				})
 				.then(response => response.text())
 				.then(data => {
-					// Mostrar la respuesta en el div de resultados
+					
 					document.getElementById('resultados_ajax_productos').innerHTML = data;
 					
-					// Si no hay errores y hay mensaje de éxito
+					
 					if(data.includes('alert-success')) {
-						// Limpiar el formulario
+						
 						form.reset();
-						// Cerrar el modal después de un breve retraso
+						
 						setTimeout(function() {
 							$('#nuevoProducto').modal('hide');
 						}, 2000);

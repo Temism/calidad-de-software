@@ -106,6 +106,30 @@ if (version_compare(PHP_VERSION, '5.3.7', '<')) {
 								}
 							?>
 				</div>
+                <script>
+        
+                $(document).ready(function(){
+                    // Limpiar el formulario
+                    $("#guardar_usuario")[0].reset();
+                    
+                    
+                    $("#firstname").val('');
+                    $("#lastname").val('');
+                    $("#user_name").val('');
+                    $("#user_email").val('');
+                    $("#user_password_new").val('');
+                    $("#user_password_repeat").val('');
+                    
+                    
+                    setTimeout(function(){
+                        $("#myModal").modal('hide');
+                        
+                        if(typeof load_users === 'function') {
+                            load_users(1);
+                        }
+                    }, 2000);
+                });
+            </script>
 				<?php
 			}
 
